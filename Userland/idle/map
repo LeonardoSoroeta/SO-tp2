@@ -1,0 +1,91 @@
+Archive member included because of file (symbol)
+
+..//libc.a(syscall_impl.o)    main.o (halt)
+..//libc.a(syscalls.o)        ..//libc.a(syscall_impl.o) (_syscaller)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+
+.text           0x0000000000120000     0x1000
+ *(.text*)
+ .text          0x0000000000120000       0x36 ../crt0.o
+                0x0000000000120000                _start
+ .text          0x0000000000120036       0x1a main.o
+                0x0000000000120036                main
+ .text          0x0000000000120050      0x79f ..//libc.a(syscall_impl.o)
+                0x0000000000120050                write
+                0x0000000000120082                read
+                0x00000000001200b4                make_beep
+                0x00000000001200d9                beepwo
+                0x0000000000120106                get_time
+                0x0000000000120134                set_time
+                0x0000000000120162                halt
+                0x0000000000120187                shutdown
+                0x00000000001201ac                set_opts
+                0x00000000001201e1                register_event
+                0x0000000000120215                wait
+                0x0000000000120243                fork
+                0x0000000000120272                ps
+                0x0000000000120297                kill
+                0x00000000001202c5                stop
+                0x00000000001202f3                hold
+                0x0000000000120321                cont
+                0x000000000012034f                signal
+                0x000000000012037d                getpname
+                0x00000000001203a2                getpid
+                0x00000000001203c7                getppid
+                0x00000000001203ec                vid_mode
+                0x0000000000120411                getresult
+                0x0000000000120436                waitpid
+                0x0000000000120469                init_proc
+                0x00000000001204a4                malloc
+                0x00000000001204d0                calloc
+                0x00000000001204fd                free
+                0x000000000012052b                mkfifo
+                0x0000000000120559                fopen
+                0x0000000000120587                fsize
+                0x00000000001205b5                size
+                0x00000000001205e1                fstart
+                0x000000000012060f                start
+                0x000000000012063b                fseek
+                0x000000000012066e                seek
+                0x000000000012069f                fclose
+                0x00000000001206cd                close
+                0x00000000001206f9                pipe
+                0x0000000000120727                dup2
+                0x0000000000120754                ls
+                0x0000000000120779                ctx_begin
+                0x000000000012079e                screenshot
+                0x00000000001207c3                exit
+ *fill*         0x00000000001207ef        0x1 
+ .text          0x00000000001207f0       0x26 ..//libc.a(syscalls.o)
+                0x00000000001207f0                _syscaller
+                0x000000000012080a                yield
+                0x0000000000121000                . = ALIGN (0x1000)
+ *fill*         0x0000000000120816      0x7ea 
+ *(.rodata*)
+
+.data           0x0000000000121000        0x0
+ *(.data*)
+ .data          0x0000000000121000        0x0 main.o
+ .data          0x0000000000121000        0x0 ..//libc.a(syscall_impl.o)
+
+.bss            0x0000000000121000        0x0
+                0x0000000000121000                bss = .
+ *(.bss*)
+ .bss           0x0000000000121000        0x0 main.o
+ .bss           0x0000000000121000        0x0 ..//libc.a(syscall_impl.o)
+                0x0000000000121000                endOfBinary = .
+LOAD ../crt0.o
+LOAD main.o
+LOAD ..//libc.a
+OUTPUT(../00-idle.bin binary)
+
+.comment        0x0000000000000000       0x24
+ .comment       0x0000000000000000       0x12 main.o
+ .comment       0x0000000000000012       0x12 ..//libc.a(syscall_impl.o)

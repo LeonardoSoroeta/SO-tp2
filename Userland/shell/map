@@ -1,0 +1,344 @@
+Archive member included because of file (symbol)
+
+..//libc.a(getc.o)            command.o (getc)
+..//libc.a(printf.o)          command.o (printf)
+..//libc.a(putc.o)            ..//libc.a(printf.o) (fputc)
+..//libc.a(scanf.o)           command.o (scanf)
+..//libc.a(string.o)          command.o (strlen)
+..//libc.a(syscall_impl.o)    command.o (write)
+..//libc.a(graphics.o)        game.o (begin_context)
+..//libc.a(math.o)            game.o (sin)
+..//libc.a(tweens.o)          game.o (ease_in_sine)
+..//libc.a(bmp.o)             ..//libc.a(graphics.o) (displaybmp)
+..//libc.a(syscalls.o)        ..//libc.a(syscall_impl.o) (_syscaller)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+
+.text           0x0000000000b00000     0xd4f8
+ *(.text*)
+ .text          0x0000000000b00000       0x36 ../crt0.o
+                0x0000000000b00000                _start
+ .text          0x0000000000b00036     0x2429 command.o
+                0x0000000000b00036                help
+                0x0000000000b000d7                echo
+                0x0000000000b0013a                clear
+                0x0000000000b00169                commands
+                0x0000000000b00198                date
+                0x0000000000b001e5                time
+                0x0000000000b00232                set_date
+                0x0000000000b002c8                settime
+                0x0000000000b0035e                halt_system
+                0x0000000000b0037e                print_ascii_table
+                0x0000000000b003fe                setcolor
+                0x0000000000b0058d                beep
+                0x0000000000b005b2                mouse_hide
+                0x0000000000b005e1                mouse_show
+                0x0000000000b00610                mouse_sensitivity
+                0x0000000000b006a8                hang_for_click
+                0x0000000000b006bf                unhang_click
+                0x0000000000b006d6                mouse_test
+                0x0000000000b00780                credits
+                0x0000000000b00a17                play_sound
+                0x0000000000b00db1                signal_handler
+                0x0000000000b00dd2                while1
+                0x0000000000b00dfc                cmd_ps
+                0x0000000000b00e21                cmd_kill
+                0x0000000000b00ee9                cmd_stop
+                0x0000000000b00fe2                cmd_cont
+                0x0000000000b010c8                cmd_getpid
+                0x0000000000b010fa                cmd_getppid
+                0x0000000000b0112c                vid_mode_test
+                0x0000000000b0114c                game_start
+                0x0000000000b0121b                music_on
+                0x0000000000b01240                music_off
+                0x0000000000b01274                cmd_ls
+                0x0000000000b01299                cat
+                0x0000000000b013bb                cmd_pipe
+                0x0000000000b013d6                cmd_input
+                0x0000000000b0144e                parse_sounds
+                0x0000000000b014d5                parse_sound
+                0x0000000000b0156d                parse_title
+                0x0000000000b015b3                parse_header
+                0x0000000000b01693                parse_body
+                0x0000000000b01c94                parse_date
+                0x0000000000b01e5c                parse_time
+                0x0000000000b02024                is_num
+                0x0000000000b0204b                valid_time
+                0x0000000000b0208e                valid_date
+                0x0000000000b02148                is_leap_year
+                0x0000000000b021b4                getchar_cmd
+                0x0000000000b021fb                printf_cmd
+                0x0000000000b02275                scanf_cmd
+                0x0000000000b02419                reset_vect
+                0x0000000000b0244a                help_error_print
+ .text          0x0000000000b0245f     0x1cc6 game.o
+                0x0000000000b02559                game_sig_handler
+                0x0000000000b02566                game
+                0x0000000000b037dd                new_bullet
+                0x0000000000b03879                bullet_set_position
+                0x0000000000b039d7                new_asteroid
+                0x0000000000b03a85                asteroid_set_position
+                0x0000000000b03fe0                game_over_fn
+ .text          0x0000000000b04125       0xd6 main.o
+                0x0000000000b04125                sig_handler
+                0x0000000000b04132                doA
+                0x0000000000b04147                doB
+                0x0000000000b0415c                main
+                0x0000000000b041ab                start_sound
+ .text          0x0000000000b041fb     0x109b shell.o
+                0x0000000000b041fb                init_shell
+                0x0000000000b04275                print_shell_text
+                0x0000000000b0428a                print_shell_error
+                0x0000000000b042ae                update_shell
+                0x0000000000b042cb                refresh_shell
+                0x0000000000b04461                push_history
+                0x0000000000b044a5                execute_command
+                0x0000000000b045aa                parse_command
+                0x0000000000b0467f                get_arguments
+                0x0000000000b04765                fill_buffer
+                0x0000000000b047ab                fill_shell
+                0x0000000000b047e1                clean_buffer
+                0x0000000000b04825                clean_shell
+                0x0000000000b0485d                get_cmd_index
+                0x0000000000b048c0                get_command_table
+                0x0000000000b048cd                print_commands
+                0x0000000000b04a79                show_history
+                0x0000000000b04ade                get_cmd_count
+                0x0000000000b04aea                run_job
+                0x0000000000b04b50                job_processor
+                0x0000000000b04bae                malloc_test
+                0x0000000000b04c95                add_command
+                0x0000000000b04d1f                show_ipc
+                0x0000000000b04d67                initialize_cmd_table
+                0x0000000000b05142                history_go_back
+                0x0000000000b05182                history_go_forward
+                0x0000000000b051c8                mouse_event
+                0x0000000000b05264                set_listening_mouse
+                0x0000000000b0527d                set_game_enabled
+ .text          0x0000000000b05296      0x178 sound.o
+                0x0000000000b05296                sound
+ .text          0x0000000000b0540e      0x1a6 ..//libc.a(getc.o)
+                0x0000000000b0540e                fungetc
+                0x0000000000b05430                ungetc
+                0x0000000000b0544f                fgetc
+                0x0000000000b054b7                getc
+                0x0000000000b054c7                fgetsn
+                0x0000000000b0553e                fgets
+                0x0000000000b0558f                gets
+ .text          0x0000000000b055b4      0x626 ..//libc.a(printf.o)
+                0x0000000000b055b4                printf
+                0x0000000000b05663                fprintf
+                0x0000000000b05714                print_number
+                0x0000000000b0591d                vfprintf
+ .text          0x0000000000b05bda       0xbe ..//libc.a(putc.o)
+                0x0000000000b05bda                fputc
+                0x0000000000b05c02                putc
+                0x0000000000b05c21                fputsn
+                0x0000000000b05c49                fputs
+                0x0000000000b05c79                puts
+ .text          0x0000000000b05c98      0x509 ..//libc.a(scanf.o)
+                0x0000000000b05c98                scanf
+                0x0000000000b05d47                fscanf
+                0x0000000000b05df8                vfscanf
+                0x0000000000b06149                atoi
+ .text          0x0000000000b061a1      0x27b ..//libc.a(string.o)
+                0x0000000000b061a1                strlen
+                0x0000000000b061d2                strcpy
+                0x0000000000b06213                reverse
+                0x0000000000b06291                itoa
+                0x0000000000b0634f                substr
+                0x0000000000b063bd                strcmp
+ .text          0x0000000000b0641c      0x79f ..//libc.a(syscall_impl.o)
+                0x0000000000b0641c                write
+                0x0000000000b0644e                read
+                0x0000000000b06480                make_beep
+                0x0000000000b064a5                beepwo
+                0x0000000000b064d2                get_time
+                0x0000000000b06500                set_time
+                0x0000000000b0652e                halt
+                0x0000000000b06553                shutdown
+                0x0000000000b06578                set_opts
+                0x0000000000b065ad                register_event
+                0x0000000000b065e1                wait
+                0x0000000000b0660f                fork
+                0x0000000000b0663e                ps
+                0x0000000000b06663                kill
+                0x0000000000b06691                stop
+                0x0000000000b066bf                hold
+                0x0000000000b066ed                cont
+                0x0000000000b0671b                signal
+                0x0000000000b06749                getpname
+                0x0000000000b0676e                getpid
+                0x0000000000b06793                getppid
+                0x0000000000b067b8                vid_mode
+                0x0000000000b067dd                getresult
+                0x0000000000b06802                waitpid
+                0x0000000000b06835                init_proc
+                0x0000000000b06870                malloc
+                0x0000000000b0689c                calloc
+                0x0000000000b068c9                free
+                0x0000000000b068f7                mkfifo
+                0x0000000000b06925                fopen
+                0x0000000000b06953                fsize
+                0x0000000000b06981                size
+                0x0000000000b069ad                fstart
+                0x0000000000b069db                start
+                0x0000000000b06a07                fseek
+                0x0000000000b06a3a                seek
+                0x0000000000b06a6b                fclose
+                0x0000000000b06a99                close
+                0x0000000000b06ac5                pipe
+                0x0000000000b06af3                dup2
+                0x0000000000b06b20                ls
+                0x0000000000b06b45                ctx_begin
+                0x0000000000b06b6a                screenshot
+                0x0000000000b06b8f                exit
+ .text          0x0000000000b06bbb     0x14a4 ..//libc.a(graphics.o)
+                0x0000000000b06bbb                translate_x
+                0x0000000000b06be6                translate_y
+                0x0000000000b06c11                begin_context
+                0x0000000000b06cc3                node_create
+                0x0000000000b06d12                add_node
+                0x0000000000b06d9e                remove_node
+                0x0000000000b06e36                free_node
+                0x0000000000b06e5f                set_pixel_rgb
+                0x0000000000b06f64                get_pixel_color
+                0x0000000000b07086                set_pixel_color
+                0x0000000000b070d4                ctx_clear
+                0x0000000000b07123                draw_rect_fill
+                0x0000000000b071e7                draw_rect
+                0x0000000000b072fc                draw_linev
+                0x0000000000b07385                draw_lineh
+                0x0000000000b0740e                draw_line
+                0x0000000000b07545                draw_ellipse
+                0x0000000000b07694                draw_ellipse_fill
+                0x0000000000b07878                draw_circle
+                0x0000000000b078be                draw_circle_fill
+                0x0000000000b07904                draw_polygon
+                0x0000000000b07b4a                draw_polygon_fill
+                0x0000000000b07b96                rect_create
+                0x0000000000b07c4a                rect_tick
+                0x0000000000b07d1a                bmp_create
+                0x0000000000b07d8b                bmp_tick
+                0x0000000000b07e48                ellipse_create
+                0x0000000000b07efc                ellipse_tick
+                0x0000000000b07fcc                context_tick
+ .text          0x0000000000b0805f      0x190 ..//libc.a(math.o)
+                0x0000000000b0805f                sin
+                0x0000000000b081b9                sqrt
+ .text          0x0000000000b081ef      0x52d ..//libc.a(tweens.o)
+                0x0000000000b081ef                ease_linear
+                0x0000000000b0822f                ease_in_quad
+                0x0000000000b08282                ease_out_quad
+                0x0000000000b082f5                ease_inout_quad
+                0x0000000000b083e0                ease_in_cubic
+                0x0000000000b08438                ease_out_cubic
+                0x0000000000b084b5                ease_inout_cubic
+                0x0000000000b08592                ease_in_sine
+                0x0000000000b08618                ease_out_sine
+                0x0000000000b08677                ease_inout_sine
+ .text          0x0000000000b0871c      0x3ce ..//libc.a(bmp.o)
+                0x0000000000b08751                displaybmp
+ *fill*         0x0000000000b08aea        0x6 
+ .text          0x0000000000b08af0       0x26 ..//libc.a(syscalls.o)
+                0x0000000000b08af0                _syscaller
+                0x0000000000b08b0a                yield
+                0x0000000000b0c000                . = ALIGN (0x4000)
+ *fill*         0x0000000000b08b16     0x34ea 
+ *(.rodata*)
+ .rodata        0x0000000000b0c000      0xa07 command.o
+ *fill*         0x0000000000b0ca07        0x9 
+ .rodata        0x0000000000b0ca10      0x110 game.o
+ .rodata        0x0000000000b0cb20       0x11 main.o
+ *fill*         0x0000000000b0cb31        0x7 
+ .rodata        0x0000000000b0cb38      0x71c shell.o
+ .rodata        0x0000000000b0d254        0x6 sound.o
+ *fill*         0x0000000000b0d25a        0x6 
+ .rodata        0x0000000000b0d260       0xb0 ..//libc.a(printf.o)
+ .rodata        0x0000000000b0d310       0x40 ..//libc.a(graphics.o)
+ .rodata        0x0000000000b0d350       0x70 ..//libc.a(math.o)
+ .rodata        0x0000000000b0d3c0       0x30 ..//libc.a(tweens.o)
+ .rodata        0x0000000000b0d3f0      0x108 ..//libc.a(bmp.o)
+
+.data           0x0000000000b10000       0xd8
+ *(.data*)
+ .data          0x0000000000b10000       0x94 command.o
+                0x0000000000b10000                credit_text
+ .data          0x0000000000b10094        0x2 game.o
+ .data          0x0000000000b10096        0x0 main.o
+ .data          0x0000000000b10096        0x1 shell.o
+                0x0000000000b10096                listening_mouse
+ *fill*         0x0000000000b10097        0x9 
+ .data          0x0000000000b100a0       0x34 sound.o
+ .data          0x0000000000b100d4        0x4 ..//libc.a(getc.o)
+ .data          0x0000000000b100d8        0x0 ..//libc.a(printf.o)
+ .data          0x0000000000b100d8        0x0 ..//libc.a(putc.o)
+ .data          0x0000000000b100d8        0x0 ..//libc.a(scanf.o)
+ .data          0x0000000000b100d8        0x0 ..//libc.a(string.o)
+ .data          0x0000000000b100d8        0x0 ..//libc.a(syscall_impl.o)
+ .data          0x0000000000b100d8        0x0 ..//libc.a(graphics.o)
+ .data          0x0000000000b100d8        0x0 ..//libc.a(math.o)
+ .data          0x0000000000b100d8        0x0 ..//libc.a(tweens.o)
+ .data          0x0000000000b100d8        0x0 ..//libc.a(bmp.o)
+
+.bss            0x0000000000b14000       0xbc
+                0x0000000000b14000                bss = .
+ *(.bss*)
+ .bss           0x0000000000b14000        0x1 command.o
+                0x0000000000b14000                waiting_click
+ *fill*         0x0000000000b14001        0x7 
+ .bss           0x0000000000b14008       0x88 game.o
+                0x0000000000b14008                sound_fd
+ .bss           0x0000000000b14090        0x0 main.o
+ .bss           0x0000000000b14090       0x2c shell.o
+                0x0000000000b14090                shell_buffer
+                0x0000000000b14098                curr_pos
+                0x0000000000b1409c                game_enabled
+                0x0000000000b140a0                history_index
+                0x0000000000b140a4                history_inserting_index
+                0x0000000000b140a8                cmd_history
+                0x0000000000b140b0                cmd_table
+                0x0000000000b140b8                cmd_count
+ .bss           0x0000000000b140bc        0x0 sound.o
+ .bss           0x0000000000b140bc        0x0 ..//libc.a(getc.o)
+ .bss           0x0000000000b140bc        0x0 ..//libc.a(printf.o)
+ .bss           0x0000000000b140bc        0x0 ..//libc.a(putc.o)
+ .bss           0x0000000000b140bc        0x0 ..//libc.a(scanf.o)
+ .bss           0x0000000000b140bc        0x0 ..//libc.a(string.o)
+ .bss           0x0000000000b140bc        0x0 ..//libc.a(syscall_impl.o)
+ .bss           0x0000000000b140bc        0x0 ..//libc.a(graphics.o)
+ .bss           0x0000000000b140bc        0x0 ..//libc.a(math.o)
+ .bss           0x0000000000b140bc        0x0 ..//libc.a(tweens.o)
+ .bss           0x0000000000b140bc        0x0 ..//libc.a(bmp.o)
+                0x0000000000b140bc                endOfBinary = .
+LOAD ../crt0.o
+LOAD command.o
+LOAD game.o
+LOAD main.o
+LOAD shell.o
+LOAD sound.o
+LOAD ..//libc.a
+OUTPUT(../00-shell.bin binary)
+
+.comment        0x0000000000000000      0x10e
+ .comment       0x0000000000000000       0x12 command.o
+ .comment       0x0000000000000012       0x12 game.o
+ .comment       0x0000000000000024       0x12 main.o
+ .comment       0x0000000000000036       0x12 shell.o
+ .comment       0x0000000000000048       0x12 sound.o
+ .comment       0x000000000000005a       0x12 ..//libc.a(getc.o)
+ .comment       0x000000000000006c       0x12 ..//libc.a(printf.o)
+ .comment       0x000000000000007e       0x12 ..//libc.a(putc.o)
+ .comment       0x0000000000000090       0x12 ..//libc.a(scanf.o)
+ .comment       0x00000000000000a2       0x12 ..//libc.a(string.o)
+ .comment       0x00000000000000b4       0x12 ..//libc.a(syscall_impl.o)
+ .comment       0x00000000000000c6       0x12 ..//libc.a(graphics.o)
+ .comment       0x00000000000000d8       0x12 ..//libc.a(math.o)
+ .comment       0x00000000000000ea       0x12 ..//libc.a(tweens.o)
+ .comment       0x00000000000000fc       0x12 ..//libc.a(bmp.o)

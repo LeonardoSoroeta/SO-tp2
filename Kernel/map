@@ -1,0 +1,535 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+
+.text           0x0000000000100000     0xc3c0
+                0x0000000000100000                text = .
+ *(.text*)
+ .text          0x0000000000100000       0x10 loader.asm.o
+                0x0000000000100000                loader
+ .text          0x0000000000100010      0x3fe kernel.o
+                0x0000000000100010                clearBSS
+                0x0000000000100037                getStackBase
+                0x0000000000100042                initializeKernelBinary
+                0x000000000010009f                play_intro
+                0x0000000000100227                main
+ .text          0x000000000010040e      0x126 lib.o
+                0x000000000010040e                memset
+                0x0000000000100459                memcpy
+ .text          0x0000000000100534       0xe1 moduleLoader.o
+                0x0000000000100534                loadModules
+ .text          0x0000000000100615      0x258 naiveConsole.o
+                0x0000000000100615                ncPrint
+                0x000000000010065e                ncPrintChar
+                0x000000000010068c                ncNewline
+                0x00000000001006ca                ncPrintDec
+                0x00000000001006e9                ncPrintHex
+                0x0000000000100708                ncPrintBin
+                0x0000000000100727                ncPrintBase
+                0x0000000000100756                ncClear
+ .text          0x000000000010086d      0x54c arch/buddy.o
+                0x000000000010086d                buddy_init
+                0x00000000001008ef                _buddy_alloc
+                0x0000000000100a9a                _buddy_free
+                0x0000000000100bb3                _buddy_size
+                0x0000000000100c4a                _buddy_kill
+                0x0000000000100c90                _buddy_print
+                0x0000000000100d23                buddy_alloc
+                0x0000000000100d47                buddy_free
+                0x0000000000100d6b                buddy_size
+                0x0000000000100d8f                buddy_print
+                0x0000000000100da4                buddy_kill
+ .text          0x0000000000100db9      0xd21 arch/fs.o
+                0x0000000000100f53                init_fs
+                0x00000000001011c3                mkfifo
+                0x0000000000101293                dup2
+                0x0000000000101338                pipe
+                0x0000000000101469                add_file
+                0x000000000010148d                file_from_fd
+                0x00000000001014f4                fopenp
+                0x00000000001015ac                fclosep
+                0x0000000000101636                fopen
+                0x0000000000101660                fclose
+                0x000000000010168a                close
+                0x00000000001016ef                fsize
+                0x0000000000101775                size
+                0x00000000001017d3                fseek
+                0x0000000000101862                seek
+                0x00000000001018c7                fstart
+                0x000000000010192c                start
+                0x0000000000101983                ls
+ .text          0x0000000000101ada      0x118 arch/idt.o
+                0x0000000000101ada                init_idt
+                0x0000000000101bb2                idt_set_handler
+ .text          0x0000000000101bf2      0x458 arch/interrupt.o
+                0x0000000000101bf2                init_interrupts
+                0x0000000000101cae                add_listener
+                0x0000000000101d42                on_interrupt
+                0x0000000000101dd9                on_timer_tick
+                0x0000000000101e1e                on_keyboard
+                0x0000000000101e63                on_mouse
+                0x0000000000101ea8                on_gpf
+                0x0000000000101f37                on_syscall
+ .text          0x000000000010204a      0x49e arch/kmem.o
+                0x0000000000102068                pkalloc
+                0x0000000000102103                kmalloc
+                0x000000000010225b                kcalloc
+                0x00000000001022a7                kfree
+                0x0000000000102424                init_kheap
+ .text          0x00000000001024e8      0x8e4 arch/paging.o
+                0x00000000001024ee                give_new_page
+                0x0000000000102c98                init_paging
+                0x0000000000102d84                on_page_fault
+ .text          0x0000000000102dcc      0x19b arch/pmem.o
+                0x0000000000102dcc                fit_align_4k
+                0x0000000000102e2e                pcalloc
+                0x0000000000102e73                pmalloc
+                0x0000000000102eab                pfree
+                0x0000000000102ecb                init_mem
+ .text          0x0000000000102f67       0x3c arch/ports.o
+                0x0000000000102f67                _inportb
+                0x0000000000102f85                _outportb
+ .text          0x0000000000102fa3     0x15eb arch/scheduler.o
+                0x0000000000102fa3                print_registers
+                0x00000000001030f3                signal
+                0x000000000010311b                default_sig_handler
+                0x0000000000103149                current_task
+                0x0000000000103156                current_process
+                0x0000000000103166                prepare_fork
+                0x00000000001034a1                waitpid
+                0x00000000001034ec                kill
+                0x000000000010355d                sendsig
+                0x00000000001035c3                stop
+                0x000000000010364a                hold
+                0x00000000001036d1                cont
+                0x0000000000103757                exit
+                0x000000000010388e                getpid
+                0x00000000001038a1                getppid
+                0x00000000001038b8                getresult
+                0x00000000001038cb                ptasks
+                0x000000000010391f                ps
+                0x0000000000103b6f                scheduler_enqueue
+                0x0000000000103e9a                init_scheduling
+                0x000000000010415c                current_entry_point
+                0x0000000000104170                scheduler_switch
+                0x00000000001044d8                on_timer_step
+                0x00000000001044ff                drop_to_kernel
+                0x000000000010453f                back_to_user
+                0x0000000000104566                int80_drop_to_kernel
+                0x000000000010457a                int80_back_to_user
+ .text          0x000000000010458e      0x14a arch/serial.o
+                0x000000000010462b                init_serial
+                0x0000000000104668                serial_send
+                0x000000000010469f                serial_string
+ .text          0x00000000001046d8      0x5eb ds/list.o
+                0x00000000001046d8                list_destroy
+                0x0000000000104715                list_free
+                0x0000000000104756                list_append
+                0x00000000001047d8                list_insert
+                0x000000000010482e                list_append_after
+                0x0000000000104912                list_insert_after
+                0x0000000000104970                list_create
+                0x00000000001049af                list_find
+                0x00000000001049f9                list_get
+                0x0000000000104a4c                list_remove
+                0x0000000000104ab0                list_delete
+                0x0000000000104b64                list_pop
+                0x0000000000104bad                list_dequeue
+                0x0000000000104bf3                list_copy
+                0x0000000000104c3e                list_merge
+ .text          0x0000000000104cc3      0x19a ipc/named_pipe.o
+                0x0000000000104cc3                write_to_fd
+                0x0000000000104dba                read_from_fd
+ .text          0x0000000000104e5d       0x13 ipc/pipe.o
+                0x0000000000104e5d                pipe2
+ .text          0x0000000000104e70      0x34e sys/bmp.o
+                0x0000000000104ea5                displaybmp
+                0x0000000000104fc8                displaybmp_8bit
+                0x000000000010507a                displaybmp_32bit
+ .text          0x00000000001051be      0x101 sys/bochsvbe.o
+                0x00000000001051be                bochs_vbe_set_mode
+                0x00000000001051ed                bochs_vbe_exit_mode
+ .text          0x00000000001052bf      0x1a0 sys/clock.o
+                0x00000000001052bf                clock_get
+                0x00000000001052e5                clock_get_seconds
+                0x00000000001052f5                clock_get_minutes
+                0x0000000000105305                clock_get_hours
+                0x0000000000105315                clock_get_weekday
+                0x0000000000105325                clock_get_day_of_month
+                0x0000000000105335                clock_get_month
+                0x0000000000105345                clock_get_year
+                0x0000000000105355                clock_set
+                0x0000000000105386                clock_set_seconds
+                0x00000000001053a5                clock_set_minutes
+                0x00000000001053c4                clock_set_hours
+                0x00000000001053e3                clock_set_weekday
+                0x0000000000105402                clock_set_day_of_month
+                0x0000000000105421                clock_set_month
+                0x0000000000105440                clock_set_year
+ .text          0x000000000010545f      0x32f sys/keyboard.o
+                0x000000000010545f                is_buffer_empty
+                0x000000000010547d                is_alpha
+                0x00000000001054bc                insert_key
+                0x0000000000105501                get_key
+                0x0000000000105558                key_received
+                0x00000000001056eb                register_listener
+                0x000000000010570e                init_keyboard
+                0x0000000000105748                add_keyboard_listener
+ .text          0x000000000010578e      0x3cd sys/logging.o
+                0x000000000010578e                logi
+                0x00000000001057b5                loghex
+                0x00000000001057eb                logd
+                0x00000000001057fa                logc
+                0x0000000000105819                logs
+                0x0000000000105838                lognl
+                0x000000000010584d                logf
+ .text          0x0000000000105b5b      0x650 sys/malloc.o
+                0x0000000000105b79                msize
+                0x0000000000105bc7                malloc
+                0x0000000000105e0b                calloc
+                0x0000000000105e65                free
+                0x0000000000106031                print_malloc
+                0x00000000001060d1                init_heap
+ .text          0x00000000001061ab      0x656 sys/mouse.o
+                0x00000000001061ab                init_mouse
+                0x00000000001061df                add_mouse_listener
+                0x0000000000106529                mouse_set_visible
+                0x00000000001065f4                mouse_set_sensitivity
+                0x0000000000106691                mouse_wait
+                0x00000000001066f4                mouse_write
+                0x0000000000106736                mouse_read
+                0x0000000000106750                mouse_install
+ .text          0x0000000000106801        0x0 sys/proc.o
+ .text          0x0000000000106801       0xfa sys/sound.o
+                0x0000000000106801                play
+                0x0000000000106880                pause
+                0x00000000001068a1                beep
+                0x00000000001068b6                beeplf
+                0x00000000001068f5                init_sound
+ .text          0x00000000001068fb     0x12cf sys/syscall_distributor.o
+                0x00000000001079b8                init_syscalls
+ .text          0x0000000000107bca       0xde sys/timer.o
+                0x0000000000107c4d                wait
+                0x0000000000107c7b                init_timer
+ .text          0x0000000000107ca8     0x15cd sys/vga.o
+                0x0000000000107ca8                init_vga
+                0x0000000000107d74                get_buffer
+                0x0000000000107d81                vgetcolor
+                0x0000000000107e7d                vputpixel
+                0x0000000000107f7a                vputpixelc
+                0x0000000000107fbd                vrectfill
+                0x000000000010804b                vrect
+                0x0000000000108121                vline
+                0x00000000001081f6                vellipse
+                0x000000000010830b                vellipsefill
+                0x00000000001084b9                vpoly
+                0x00000000001086f3                vcircle
+                0x000000000010872b                vcirclefill
+                0x0000000000108763                vsetfgcolor
+                0x0000000000108779                vsetbgcolor
+                0x000000000010878f                vcharxy
+                0x000000000010886e                vnl
+                0x00000000001088b6                vchar
+                0x00000000001089bd                vstringxy
+                0x0000000000108a09                vstring
+                0x0000000000108a3a                vclc
+                0x0000000000108a74                vclcmid
+                0x0000000000108aae                vclr
+                0x0000000000108af0                vcopy
+                0x0000000000108b9a                vmove_up
+                0x0000000000108c0f                vputnum
+                0x0000000000108c50                vputbin
+                0x0000000000108c6f                vputi
+                0x0000000000108c99                vputhex
+                0x0000000000108ccd                vset_cursor
+                0x0000000000108dd2                vunset_cursor
+                0x0000000000108eca                vset_invisible_cursor
+                0x0000000000108ed7                take_screenshot
+                0x0000000000108f5e                vprintf
+ .text          0x0000000000109275      0x909 sys/video.o
+                0x0000000000109275                clc
+                0x00000000001092c9                clr
+                0x0000000000109333                move_up
+                0x00000000001093bf                set_blink
+                0x0000000000109417                unset_cursor
+                0x0000000000109456                set_cursor
+                0x0000000000109495                set_colour
+                0x00000000001094bf                set_colour_raw
+                0x00000000001094d8                get_fg_colour
+                0x00000000001094e8                get_bg_colour
+                0x00000000001094f8                get_x
+                0x0000000000109527                get_y
+                0x0000000000109547                putcxy
+                0x00000000001095bc                putsxy
+                0x0000000000109610                putc
+                0x000000000010975d                putnum
+                0x000000000010979e                putbin
+                0x00000000001097bd                puti
+                0x00000000001097e7                puthex
+                0x000000000010981b                prints
+                0x000000000010984c                println
+                0x0000000000109870                printf
+ .text          0x0000000000109b7e      0x64d util/util.o
+                0x0000000000109b7e                itoa
+                0x0000000000109c6c                intlen
+                0x0000000000109cba                strlen
+                0x0000000000109ce8                strcpy
+                0x0000000000109d29                strdup
+                0x0000000000109d6d                to_bcd8
+                0x0000000000109d97                to_bcd16
+                0x0000000000109de3                itoa10
+                0x0000000000109f11                itoa16
+                0x0000000000109f8f                itoa2
+                0x0000000000109fe8                sin
+                0x000000000010a142                strcmp
+ *fill*         0x000000000010a1cb        0x5 
+ .text          0x000000000010a1d0       0x21 asm/libasm.asm.o
+                0x000000000010a1d0                cpuVendor
+ *fill*         0x000000000010a1f1        0xf 
+ .text          0x000000000010a200      0x262 arch/debug.asm.o
+                0x000000000010a2f9                os_dump_regs
+ *fill*         0x000000000010a462        0xe 
+ .text          0x000000000010a470       0x7d arch/hard.asm.o
+                0x000000000010a470                _get_memory_size
+                0x000000000010a49b                _get_vga_address
+                0x000000000010a4c6                _get_esp
+                0x000000000010a4d1                _get_ebp
+                0x000000000010a4d8                _get_r9
+                0x000000000010a4df                _get_r11
+                0x000000000010a4e6                _get_r12
+ *fill*         0x000000000010a4ed        0x3 
+ .text          0x000000000010a4f0      0x235 arch/interrupts.asm.o
+                0x000000000010a4f0                _get_idtr
+                0x000000000010a4f4                _load_handler
+                0x000000000010a510                _page_fault_handler
+                0x000000000010a528                _tt_interrupt_handler
+                0x000000000010a582                _keyboard_interrupt_handler
+                0x000000000010a58d                _backup_interrupt_handler
+                0x000000000010a5d8                _syscall_interrupt_handler
+                0x000000000010a5df                _mouse_interrupt_handler
+                0x000000000010a5ec                _gpf_handler
+                0x000000000010a62e                _sim_interrupt
+                0x000000000010a6ac                _ctx_switch
+ *fill*         0x000000000010a725        0xb 
+ .text          0x000000000010a730       0x61 arch/libasm.asm.o
+                0x000000000010a730                _outport
+                0x000000000010a766                _inport
+                0x000000000010a78b                _cli
+                0x000000000010a78d                _sti
+                0x000000000010a78f                _halt
+ *fill*         0x000000000010a791        0xf 
+ .text          0x000000000010a7a0       0x4b arch/paging.asm.o
+                0x000000000010a7a0                _get_cr3
+                0x000000000010a7c7                _set_cr3
+ *fill*         0x000000000010a7eb        0x5 
+ .text          0x000000000010a7f0        0xf arch/scheduling.asm.o
+                0x000000000010a7f0                _start_scheduling
+                0x000000000010b000                . = ALIGN (0x1000)
+ *fill*         0x000000000010a7ff      0x801 
+                0x000000000010b000                rodata = .
+ *(.rodata*)
+ .rodata        0x000000000010b000      0x6bd kernel.o
+ *fill*         0x000000000010b6bd        0x3 
+ .rodata        0x000000000010b6c0       0x10 naiveConsole.o
+ .rodata        0x000000000010b6d0        0x3 arch/buddy.o
+ *fill*         0x000000000010b6d3        0x5 
+ .rodata        0x000000000010b6d8       0x94 arch/fs.o
+ *fill*         0x000000000010b76c        0x4 
+ .rodata        0x000000000010b770      0x1be arch/interrupt.o
+ .rodata        0x000000000010b92e       0x4a arch/kmem.o
+ .rodata        0x000000000010b978      0x14c arch/paging.o
+ .rodata        0x000000000010bac4       0x4b arch/pmem.o
+ *fill*         0x000000000010bb0f        0x1 
+ .rodata        0x000000000010bb10      0x267 arch/scheduler.o
+ .rodata        0x000000000010bd77       0x23 ipc/named_pipe.o
+ *fill*         0x000000000010bd9a        0x6 
+ .rodata        0x000000000010bda0      0x16f sys/bmp.o
+ *fill*         0x000000000010bf0f        0x1 
+ .rodata        0x000000000010bf10       0xb8 sys/logging.o
+ .rodata        0x000000000010bfc8       0xf1 sys/malloc.o
+ *fill*         0x000000000010c0b9        0x3 
+ .rodata        0x000000000010c0bc        0x4 sys/sound.o
+ .rodata        0x000000000010c0c0       0x88 sys/syscall_distributor.o
+ .rodata        0x000000000010c148      0x108 sys/vga.o
+ .rodata        0x000000000010c250       0xb8 sys/video.o
+ *fill*         0x000000000010c308        0x8 
+ .rodata        0x000000000010c310       0xb0 util/util.o
+
+.data           0x000000000010d000      0xe09
+                0x000000000010d000                data = .
+ *(.data*)
+ .data          0x000000000010d000        0x0 kernel.o
+ .data          0x000000000010d000        0x0 lib.o
+ .data          0x000000000010d000        0x0 moduleLoader.o
+ .data          0x000000000010d000       0x48 naiveConsole.o
+ .data          0x000000000010d048        0x0 arch/buddy.o
+ .data          0x000000000010d048        0x0 arch/fs.o
+ .data          0x000000000010d048        0x0 arch/idt.o
+ *fill*         0x000000000010d048       0x38 
+ .data          0x000000000010d080      0x168 arch/interrupt.o
+ .data          0x000000000010d1e8        0x0 arch/kmem.o
+ .data          0x000000000010d1e8       0x18 arch/paging.o
+ .data          0x000000000010d200        0x0 arch/pmem.o
+ .data          0x000000000010d200        0x0 arch/ports.o
+ .data          0x000000000010d200        0x8 arch/scheduler.o
+ .data          0x000000000010d208        0x0 arch/serial.o
+ .data          0x000000000010d208        0x0 ds/list.o
+ .data          0x000000000010d208        0x0 ipc/named_pipe.o
+ .data          0x000000000010d208        0x0 ipc/pipe.o
+ .data          0x000000000010d208        0x0 sys/bmp.o
+ .data          0x000000000010d208        0x0 sys/bochsvbe.o
+ .data          0x000000000010d208        0x0 sys/clock.o
+ *fill*         0x000000000010d208       0x38 
+ .data          0x000000000010d240       0x76 sys/keyboard.o
+                0x000000000010d240                KEYBOARD_MAP
+ .data          0x000000000010d2b6        0x0 sys/logging.o
+ .data          0x000000000010d2b6        0x0 sys/malloc.o
+ .data          0x000000000010d2b6        0x2 sys/mouse.o
+ .data          0x000000000010d2b8        0x0 sys/proc.o
+ .data          0x000000000010d2b8        0x0 sys/sound.o
+ .data          0x000000000010d2b8        0x8 sys/syscall_distributor.o
+ .data          0x000000000010d2c0        0x0 sys/timer.o
+ .data          0x000000000010d2c0      0xb40 sys/vga.o
+                0x000000000010d2c0                font8x8_basic
+                0x000000000010d6c0                font8x8_ext_latin
+ .data          0x000000000010de00        0x9 sys/video.o
+ .data          0x000000000010de09        0x0 util/util.o
+                0x000000000010de09                endOfKernelBinary = .
+
+.bss            0x000000000010e000      0xf9c
+                0x000000000010e000                bss = .
+ *(.bss*)
+ .bss           0x000000000010e000        0x0 kernel.o
+ .bss           0x000000000010e000        0x0 lib.o
+ .bss           0x000000000010e000        0x0 moduleLoader.o
+ .bss           0x000000000010e000        0x0 naiveConsole.o
+ .bss           0x000000000010e000        0x8 arch/buddy.o
+ .bss           0x000000000010e008        0x8 arch/fs.o
+ .bss           0x000000000010e010       0x10 arch/idt.o
+                0x000000000010e010                idtr
+ *fill*         0x000000000010e020       0x20 
+ .bss           0x000000000010e040      0x420 arch/interrupt.o
+ .bss           0x000000000010e460        0x8 arch/kmem.o
+ .bss           0x000000000010e468       0x18 arch/paging.o
+ .bss           0x000000000010e480        0x0 arch/pmem.o
+ .bss           0x000000000010e480        0x0 arch/ports.o
+ .bss           0x000000000010e480       0x21 arch/scheduler.o
+ .bss           0x000000000010e4a1        0x0 arch/serial.o
+ .bss           0x000000000010e4a1        0x0 ds/list.o
+ .bss           0x000000000010e4a1        0x0 ipc/named_pipe.o
+ .bss           0x000000000010e4a1        0x0 ipc/pipe.o
+ .bss           0x000000000010e4a1        0x0 sys/bmp.o
+ .bss           0x000000000010e4a1        0x0 sys/bochsvbe.o
+ .bss           0x000000000010e4a1        0x0 sys/clock.o
+ *fill*         0x000000000010e4a1       0x1f 
+ .bss           0x000000000010e4c0      0x188 sys/keyboard.o
+                0x000000000010e4c0                keyboard_status
+                0x000000000010e4e0                keyboard_buffer
+ .bss           0x000000000010e648        0x0 sys/logging.o
+ .bss           0x000000000010e648        0x0 sys/malloc.o
+ *fill*         0x000000000010e648       0x38 
+ .bss           0x000000000010e680      0x148 sys/mouse.o
+                0x000000000010e680                mouse_cycle
+                0x000000000010e681                mouse_byte
+                0x000000000010e684                mouse_x
+                0x000000000010e685                mouse_y
+                0x000000000010e686                x
+                0x000000000010e688                y
+ .bss           0x000000000010e7c8        0x0 sys/proc.o
+ .bss           0x000000000010e7c8        0x0 sys/sound.o
+ *fill*         0x000000000010e7c8       0x38 
+ .bss           0x000000000010e800      0x16c sys/syscall_distributor.o
+                0x000000000010e800                syscalls
+ *fill*         0x000000000010e96c        0x4 
+ .bss           0x000000000010e970        0x8 sys/timer.o
+                0x000000000010e970                millis_ellapsed
+ *fill*         0x000000000010e978        0x8 
+ .bss           0x000000000010e980      0x540 sys/vga.o
+                0x000000000010e980                font8x8_control
+ .bss           0x000000000010eec0        0x2 sys/video.o
+ *fill*         0x000000000010eec2       0x3e 
+ .bss           0x000000000010ef00       0x82 util/util.o
+ *fill*         0x000000000010ef82        0x2 
+ .bss           0x000000000010ef84       0x18 arch/interrupts.asm.o
+ *(EXCLUDE_FILE(*.o) COMMON)
+                0x000000000010f000                . = ALIGN (0x1000)
+                0x000000000010f000                endOfKernel = .
+LOAD loader.asm.o
+LOAD kernel.o
+LOAD lib.o
+LOAD moduleLoader.o
+LOAD naiveConsole.o
+LOAD arch/buddy.o
+LOAD arch/fs.o
+LOAD arch/idt.o
+LOAD arch/interrupt.o
+LOAD arch/kmem.o
+LOAD arch/paging.o
+LOAD arch/pmem.o
+LOAD arch/ports.o
+LOAD arch/scheduler.o
+LOAD arch/serial.o
+LOAD ds/list.o
+LOAD ipc/named_pipe.o
+LOAD ipc/pipe.o
+LOAD sys/bmp.o
+LOAD sys/bochsvbe.o
+LOAD sys/clock.o
+LOAD sys/keyboard.o
+LOAD sys/logging.o
+LOAD sys/malloc.o
+LOAD sys/mouse.o
+LOAD sys/proc.o
+LOAD sys/sound.o
+LOAD sys/syscall_distributor.o
+LOAD sys/timer.o
+LOAD sys/vga.o
+LOAD sys/video.o
+LOAD util/util.o
+LOAD asm/libasm.asm.o
+LOAD arch/debug.asm.o
+LOAD arch/hard.asm.o
+LOAD arch/interrupts.asm.o
+LOAD arch/libasm.asm.o
+LOAD arch/paging.asm.o
+LOAD arch/scheduling.asm.o
+LOAD /usr/local/cross/lib/gcc/x86_64-elf/4.9.0/libgcc.a
+OUTPUT(kernel.bin binary)
+
+.comment        0x0000000000000000      0x22e
+ .comment       0x0000000000000000       0x12 kernel.o
+ .comment       0x0000000000000012       0x12 lib.o
+ .comment       0x0000000000000024       0x12 moduleLoader.o
+ .comment       0x0000000000000036       0x12 naiveConsole.o
+ .comment       0x0000000000000048       0x12 arch/buddy.o
+ .comment       0x000000000000005a       0x12 arch/fs.o
+ .comment       0x000000000000006c       0x12 arch/idt.o
+ .comment       0x000000000000007e       0x12 arch/interrupt.o
+ .comment       0x0000000000000090       0x12 arch/kmem.o
+ .comment       0x00000000000000a2       0x12 arch/paging.o
+ .comment       0x00000000000000b4       0x12 arch/pmem.o
+ .comment       0x00000000000000c6       0x12 arch/ports.o
+ .comment       0x00000000000000d8       0x12 arch/scheduler.o
+ .comment       0x00000000000000ea       0x12 arch/serial.o
+ .comment       0x00000000000000fc       0x12 ds/list.o
+ .comment       0x000000000000010e       0x12 ipc/named_pipe.o
+ .comment       0x0000000000000120       0x12 ipc/pipe.o
+ .comment       0x0000000000000132       0x12 sys/bmp.o
+ .comment       0x0000000000000144       0x12 sys/bochsvbe.o
+ .comment       0x0000000000000156       0x12 sys/clock.o
+ .comment       0x0000000000000168       0x12 sys/keyboard.o
+ .comment       0x000000000000017a       0x12 sys/logging.o
+ .comment       0x000000000000018c       0x12 sys/malloc.o
+ .comment       0x000000000000019e       0x12 sys/mouse.o
+ .comment       0x00000000000001b0       0x12 sys/proc.o
+ .comment       0x00000000000001c2       0x12 sys/sound.o
+ .comment       0x00000000000001d4       0x12 sys/syscall_distributor.o
+ .comment       0x00000000000001e6       0x12 sys/timer.o
+ .comment       0x00000000000001f8       0x12 sys/vga.o
+ .comment       0x000000000000020a       0x12 sys/video.o
+ .comment       0x000000000000021c       0x12 util/util.o

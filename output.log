@@ -1,0 +1,828 @@
+
+
+
+
+== Serial OK ===
+Stack starts at: 0x19FF00
+== IDT OK ===
+== Interrupts OK ===
+== Timer OK ===
+== Syscalls OK ===
+Setting up Kernel Heap
+Availabe Memory: 0x300000 starting at 0xD00000 ending at 0xFFFFFF
+== Kernel heap OK ===
+Initializing memory
+Available memory: 268435456 bytes
+Starting at: 0x1000000
+Ending at: 0x40000000
+== Page allocator OK ===
+Setting up paging
+Setting up page table
+Starting at: 0x206000
+Last page: 0xA05FF8
+Setting up page directory
+Starting at: 0x202000
+Setting up page directory pointer
+Starting at: 0x201000
+page table directory* -> 0x202000
+init_pdpt:: pdpt=0x202023
+page table directory* -> 0x202000
+init_pdpt:: pdpt=0x203023
+page table directory* -> 0x202000
+init_pdpt:: pdpt=0x204023
+page table directory* -> 0x202000
+init_pdpt:: pdpt=0x205023
+Setting up pml4
+pml4 -> 0x201000
+init_pml4:: pml4=0x201023
+init_pml4t:: pml4t=0x200000
+init_cr3:: cr3=0x200008
+== Paging OK ===
+== Mouse OK ===
+== Keyboard OK ===
+Setting up VGA
+Buffer at: 0xFD000000
+x=8 y=10 maxh=504 maxv=748
+== VGA OK ===
+found 5 files
+plane.bmp
+sample.txt
+so.txt
+songs
+xship.bmp
+file plane.bmp starts at 0xC00074 size: 12344 bytes
+file sample.txt starts at 0xC030AC size: 22 bytes
+file so.txt starts at 0xC030C2 size: 277 bytes
+file songs starts at 0xC031D7 size: 1274 bytes
+file xship.bmp starts at 0xC036D1 size: 7656 bytes
+== FS OK ===
+init_scheduling
+Setting up kernel.bin's heap.
+Availabe Memory: 0x3000 from 0x1404000 to 0x1406FFF
+malloc(0)::chunk 40 bytes
+0x1400000 0x1401000 0x1400F38 0x1401FF0
+open fds: 1 2 3 4
+allocated task
+round robin setup
+listening to ticks
+== Scheduler OK ===
+== Sound OK ===
+screen cleared
+Enqueing userland
+add Setting up Userland's heap.
+Availabe Memory: 0x3000 from 0x1408000 to 0x140AFFF
+malloc(1001)::chunk 40 bytes
+0x1402000 0x1403000 0x1402F38 0x1403FF0
+open fds: 1 2 3 4
+0->1001->
+;;add
+task: Userland rsp: 0x1402EA0 rbp: 0x1402EC8 rdi: FORK rsi: 0xB04179 rdx: 0xB0CB26 r10: 0xE r8: 0xE
+
+<fork
+FORK: Userland(1001) => game(1002)
+Setting up game's heap.
+Availabe Memory: 0x3000 from 0x1410000 to 0x1412FFF
+malloc(1002)::chunk 40 bytes
+urp:0x140C000 krp:0x140D000 ur:0x140CF38 kr:0x140DFF0 mp:0x1410000 mn:0x1410018
+open fds: 1 2 3 4
+0->1001->1002->
+fork>
+
+task: Userland rsp: 0x1402E80 rbp: 0x1402EA8 rdi: FORK rsi: 0xB041BD rdx: 0xB0CB2B r10: 0xE r8: 0xE
+
+<fork
+FORK: Userland(1001) => sound(1003)
+Setting up sound's heap.
+Availabe Memory: 0x3000 from 0x1420000 to 0x1422FFF
+malloc(1003)::chunk 40 bytes
+urp:0x140E000 krp:0x140F000 ur:0x140EF38 kr:0x140FFF0 mp:0x1420000 mn:0x1420018
+open task: game rsp: 0x140CF30 rbp: 0x140CF58 rdi: MKFIFO rsi: 0xB0CA10 rdx: 0xE r10: 0xE r8: 0xE
+task: game rsp: 0x140CF30 rbp: 0x140CF58 rdi: MKFIFO rsi: 0xB0CA17 rdx: 0xE r10: 0xE r8: 0xE
+task: game rsp: 0x140CF3fds: 1 2 3 4
+0->1001->1003->1002->
+fork>
+
+task: Userland rsp: 0x1402E60 rbp: 0x1402E88 rdi: MALLOC rsi: 0x80 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1001)::allocating 128 bytes
+malloc(1001)::p0:0x1408000 ps:40
+malloc(1001)::chunk=0x1408028
+malloc(1001):: start:0x1408050+128
+task: Userland rsp: 0x1402E60 rbp: 0x1402E88 rdi: CALLOC rsi: 0x20 rdx: 0x18 r10: 0xE r8: 0xE
+malloc(1001)::allocating 768 bytes
+malloc(1001)::p0:0x1408050 ps:128
+malloc(1001)::chunk=0x14080D0
+mtask: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: FOPEN rsi: 0xB0D254 rdx: 0xE r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: START rsi: 0x5 rdx: 0xE r10: 0xE r8: 0xE
+E rbp: 0x140CF58 rdi: SIGNAL rsi: 0xB02559 rdx: 0xE r10: 0xE r8: 0xE
+task: game rsp: 0x140CF30 rbp: 0x140CF58 rdi: CALLOC rsi: 0x200 rdx: 0x1 r10: 0xE r8: 0xE
+malloc(1002)::allocating 512 bytes
+malloc(1002)::p0:0x1410000 ps:40
+malloc(1002)::chunk=0x1410028
+malloc(1002):: start:0x1410050+512
+task: game rsp: 0x140CF30 rbp: 0x140CF58 rdi: FOPEN rsi: 0xB0CA22 rdx: 0xE r10: 0xE r8: 0xE
+task: game rsp: 0x140CF30 rbp: 0x140CF58 rdi: START rsi: 0x7 rdx: 0xE r10: 0xE r8: 0xE
+alloc(1001):: start:0x14080F8+768
+task: Userland rsp: 0x1402E60 rbp: 0x1402E88 rdi: CALLOC rsi: 0x64 rdx: 0x8 r10: 0xE r8: 0xE
+malloc(1001)::allocating 800 btask: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0x1AC rdx:task: game rsp: 0x140CF00 rbp: 0x140CF28 rdi: MALLOC rsi: 0x30 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 48 bytes
+malloc(1002)::p0:0x1410050 ps:512
+malloc(1002)::chunk=0x1410250
+malloc(1002):: start:0x1410278+48
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: BEGINCTytes
+malloc(1001)::p0:0x14080F8 ps:768
+malloc(1001)::chunk=0x14083F8
+malloc(1001):: start:0x1408420+800
+task: Userland rsp: 0x1402E60 rbp: 0x1402E88 rdi: CALLOC rsi: 0x80 rdx: 0x1 r10: 0xE r8: 0xE
+malloc(1001)::allocating 128 bytes
+malloc(1001)::p0:0x1408420 ps:800
+malloc(1001)::chunk=0x1408740
+malloc(100 0x416 r10: 0xE r8: 0xE
+X rsi: 0xE rdx: 0xE r10: 0xE r8: 0xE
+buffer 0xFD000000
+task: game rsp: 0x140CF30 rbp: 0x140CF58 rdi: EVENT rsi: 0x1 rdx: 0xB02852 r10: 0xE r8: 0xE
+task: game rsp: 0x140CF31):: start:0x1408768+128
+task: Userland rsp: 0x1402CF0 rbp: 0x1402D18 rdi: WRITE rsi: 0x1 rdx: 0x1402D88 r10: 0x1 r8: 0xE
+task: Userland rsp: 0x1402CF0 rbp: 0x1402D18 rdi: WRITE rsi: 0x1 rdx: 0x1402D88 r10: 0x1 r8: 0xE
+task: Userland rsp: 0x1402CF0 rbp: 0x1402D18 rdi: WRITE rsi: 0x1 rdx: 0x1402D88 r10: 0x1 r8: 0xE
+task: Userland rsp: 0x1402E80 rbp: 0x1402EA8 rdi: EVENT rsi: 0x3 rdx: 0x3 rbp: 0x140CF58 rdi: EVENT rsi: 0x0 rdx: 0xB027BF r10: 0xE r8: 0xE
+task: game rsp: 0x140CF30 rbp: 0x140CF58 rdi: EVENT rsi: 0x3 rdx: 0xB02813 r10: 0xE r8: 0xE
+B051C8 r10: 0xE r8: 0xE
+task: Userland rsp: 0x1402E80 rbp: 0x1402EA8 rdi: SIGNAL rsi: 0xB04125 rdx: 0xE r10: 0xE r8: 0xE
+task: Userland rsp: 0x1402E20 rbp: 0x1402E48 rdi: READ rsi: 0x0 rdx: 0x1402ECB r10: 0x1 r8: 0xE
+task: game rsp: 0x140FE20 rbp: 0x140FE48 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1410278 ps:48
+malloc(1002)::chunk=0x14102A8
+malloc(1002):: start:0x14102D0+20
+task: game rsp: 0x140FE20 rbp: 0x140FE48 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x14102D0 ps:20
+malloc(1002)::chunk=0x14102E4
+malloc(1002):: start:0x141030C+20
+task: game rsp: 0x140FE20 rbp: 0x140FE48 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x141030C ps:20
+malloc(1002)::chunk=0x1410320
+malloc(1002):: start:0x1410348+24
+task: game rsp: 0x140FE30 rbp: 0x140FE58 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1410348 ps:24
+malloc(1002)::chunk=0x1410360
+malloc(1002):: start:0x1410388+24
+task: game rsp: 0x140FE30 rbp: 0x140FE58 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1410388 ps:24
+malloc(1002)::chunk=0x14103A0
+malloc(1002):: start:0x14103C8+24
+task: game rsp: 0x140FE30 rbp: 0x140FE58 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x14103C8 ps:24
+malloc(1002)::chunk=0x14103E0
+malloc(1002):: start:0x1410408+24
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x574 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x526 r10: 0xE r8: 0xE
+task: game rsp: 0x140CF30 rbp: 0x140CF58 rdi: CALLOC rsi: 0x14 rdx: 0x8 r10: 0xE r8: 0xE
+malloc(1002)::allocating 160 bytes
+malloc(1002)::p0:0x1410408 ps:24
+malloc(1002)::chunk=0x1410420
+malloc(1002):: start:0x1410448+160
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1410448 ps:160
+malloc(1002)::chunk=0x14104E8
+malloc(1002):: start:0x1410510+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1410510 ps:32
+malloc(1002)::chunk=0x1410530
+malloc(1002):: start:0x1410558+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1410558 ps:20
+malloc(1002)::chunk=0x141056C
+malloc(1002):: start:0x1410594+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1410594 ps:24
+malloc(1002)::chunk=0x14105AC
+malloc(1002):: start:0x14105D4+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x14105D4 ps:32
+malloc(1002)::chunk=0x14105F4
+malloc(1002):: start:0x141061C+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x141061C ps:20
+malloc(1002)::chunk=0x1410630
+malloc(1002):: start:0x1410658+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1410658 ps:24
+malloc(1002)::chunk=0x1410670
+malloc(1002):: start:0x1410698+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1410698 ps:32
+malloc(1002)::chunk=0x14106B8
+malloc(1002):: start:0x14106E0+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x14106E0 ps:20
+malloc(1002)::chunk=0x14106F4
+malloc(1002):: start:0x141071C+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x141071C ps:24
+malloc(1002)::chunk=0x1410734
+malloc(1002):: start:0x141075C+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x141075C ps:32
+malloc(1002)::chunk=0x141077C
+malloc(1002):: start:0x14107A4+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x14107A4 ps:20
+malloc(1002)::chunk=0x14107B8
+malloc(1002):: start:0x14107E0+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x14107E0 ps:24
+malloc(1002)::ctask: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x496 r10: 0xE r8: 0xE
+hunk=0x14107F8
+malloc(1002):: start:0x1410820+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1410820 ps:32
+malloc(1002)::chunk=0x1410840
+malloc(1002):: start:0x1410868+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1410868 ps:20
+malloc(1002)::chunk=0x141087C
+malloc(1002):: start:0x14108A4+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x14108A4 ps:24
+malloc(1002)::chunk=0x14108BC
+malloc(1002):: start:0x14108E4+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x14108E4 ps:32
+malloc(1002)::chunk=0x1410904
+malloc(1002):: start:0x141092C+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x141092C ps:20
+malloc(1002)::chunk=0x1410940
+malloc(1002):: start:0x1410968+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1410968 ps:24
+malloc(1002)::chunk=0x1410980
+malloc(1002):: start:0x14109A8+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x14109A8 ps:32
+malloc(1002)::chunk=0x14109C8
+malloc(1002):: start:0x14109F0+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x14109F0 ps:20
+malloc(1002)::chunk=0x1410A04
+malloc(1002):: start:0x1410A2C+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1410A2C ps:24
+malloc(1002)::chunk=0x1410A44
+malloc(1002):: start:0x1410A6C+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1410A6C ps:32
+malloc(1002)::chunk=0x1410A8C
+malloc(1002):: start:0x1410AB4+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1410AB4 ps:20
+malloc(1002)::chunk=0x1410AC8
+malloc(1002):: start:0x1410AF0+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1410AF0 ps:24
+malloc(1002)::chunk=0x1410B08
+malloc(1002):: start:0x1410B30+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1410B30 ps:32
+malloc(1002)::chunk=0x1410B50
+malloc(1002):: start:0x1410B78+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1410B78 ps:20
+malloc(1002)::chunk=0x1410B8C
+malloc(1002):: start:0x1410BB4+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1410BB4 ps:24
+malloc(1002)::chunk=0x1410BCC
+malloc(1002):: start:0x1410BF4+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1410BF4 ps:32
+malloc(1002)::chunk=0x1410C14
+malloc(1002):: start:0x1410C3C+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1410C3C ps:20
+malloc(1002)::chunk=0x1410C50
+malloc(1002):: start:0x1410C78+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1410C78 ps:24
+malloc(1002)::chunk=0x1410C90
+malloc(1002):: start:0x1410CB8+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1410CB8 ps:32
+malloc(1002)::chunk=0x1410CD8
+malloc(1002):: start:0x1410D00+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1410D00 ps:20
+malloc(1002)::chunk=0x1410D14
+malloc(1002):: start:0x1410D3C+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1410D3C ps:24
+malloc(1002)::chunk=0x1410D54
+malloc(1002):: start:0x1410D7C+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1410D7C ps:32
+malloc(1002)::chunk=0x1410D9C
+malloc(1002):: start:0x1410DC4+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1410DC4 ps:20
+malloc(1002)::chunk=0x1410DD8
+malloc(1002):: start:0x1410E00+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1410E00 ps:24
+malloc(1002)::chunk=0x1410E18
+malloc(1002):: start:0x1410E40+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1410E40 ps:32
+malloc(1002)::chunk=0x1410E60
+malloc(1002):: start:0x1410E88+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1410E88 ps:20
+malloc(1002)::chunk=0x1410E9C
+malloc(1002):: start:0x1410EC4+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1410EC4 ps:24
+malloc(1002)::chunk=0x1410EDC
+malloc(1002):: start:0x1410F04+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1410F04 ps:32
+malloc(1002)::chunk=0x1410F24
+malloc(1002):: start:0x1410F4C+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1410F4C ps:20
+malloc(1002)::chunk=0x1410F60
+malloc(1002):: start:0x1410F88+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1410F88 ps:24
+malloc(1002)::chunk=0x1410FA0
+malloc(1002):: start:0x1410FC8+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1410FC8 ps:32
+malloc(1002)::chunk=0x1410FE8
+malloc(1002):: start:0x1411010+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1411010 ps:20
+malloc(1002)::chunk=0x1411024
+malloc(1002):: start:0x141104C+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x141104C ps:24
+malloc(1002)::chunk=0x1411064
+malloc(1task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x416 r10: 0xE r8: 0xE
+002):: start:0x141108C+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x141108C ps:32
+malloc(1002)::chunk=0x14110AC
+malloc(1002):: start:0x14110D4+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x14110D4 ps:20
+malloc(1002)::chunk=0x14110E8
+malloc(1002):: start:0x1411110+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1411110 ps:24
+malloc(1002)::chunk=0x1411128
+malloc(1002):: start:0x1411150+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1411150 ps:32
+malloc(1002)::chunk=0x1411170
+malloc(1002):: start:0x1411198+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1411198 ps:20
+malloc(1002)::chunk=0x14111AC
+malloc(1002):: start:0x14111D4+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x14111D4 ps:24
+malloc(1002)::chunk=0x14111EC
+malloc(1002):: start:0x1411214+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1411214 ps:32
+malloc(1002)::chunk=0x1411234
+malloc(1002):: start:0x141125C+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x141125C ps:20
+malloc(1002)::chunk=0x1411270
+malloc(1002):: start:0x1411298+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1411298 ps:24
+malloc(1002)::chunk=0x14112B0
+malloc(1002):: start:0x14112D8+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x14112D8 ps:32
+malloc(1002)::chunk=0x14112F8
+malloc(1002):: start:0x1411320+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1411320 ps:20
+malloc(1002)::chunk=0x1411334
+malloc(1002):: start:0x141135C+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x141135C ps:24
+malloc(1002)::chunk=0x1411374
+malloc(1002):: start:0x141139C+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x141139C ps:32
+malloc(1002)::chunk=0x14113BC
+malloc(1002):: start:0x14113E4+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x14113E4 ps:20
+malloc(1002)::chunk=0x14113F8
+malloc(1002):: start:0x1411420+24
+task: game rsp: 0x140CF30 rbp: 0x140CF58 rdi: CALLOC rsi: 0x14 rdx: 0x8 r10: 0xE r8: 0xE
+malloc(1002)::allocating 160 bytes
+malloc(1002)::p0:0x1411420 ps:24
+malloc(1002)::chunk=0x1411438
+malloc(1002):: start:0x1411460+160
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1411460 ps:160
+malloc(1002)::chunk=0x1411500
+malloc(1002):: start:0x1411528+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1411528 ps:32
+malloc(1002)::chunk=0x1411548
+malloc(1002):: start:0x1411570+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1411570 ps:20
+malloc(1002)::chunk=0x1411584
+malloc(1002):: start:0x14115AC+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x14115AC ps:24
+malloc(1002)::chunk=0x14115C4
+malloc(1002):: start:0x14115EC+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x14115EC ps:32
+malloc(1002)::chunk=0x141160C
+malloc(1002):: start:0x1411634+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1411634 ps:20
+malloc(1002)::chunk=0x1411648
+malloc(1002):: start:0x1411670+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1411670 ps:24
+malloc(1002)::chunk=0x1411688
+malloc(1002):: start:0x14116B0+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x14116B0 ps:32
+malloc(1002)::chunk=0x14116D0
+malloc(1002):: start:0x14116F8+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x14116F8 ps:20
+malloc(1002)::chunk=0x141170C
+malloc(1002):: start:0x1411734+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1411734 ps:24
+malloc(1002)::chunk=0x141174C
+malloc(1002):: start:0x1411774+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1411774 ps:32
+malloc(1002)::chunk=0x1411794
+malloc(1002):: start:0x14117BC+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x14117BC ps:20
+malloc(1002)::chunk=0x14117D0
+malloc(1002):: start:0x14117F8+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x14117F8 ps:24
+malloc(1002)::chunk=0x1411810
+malloc(1002):: start:0x1411838+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1411838 ps:32
+malloc(1002)::chunk=0x1411858
+malloc(1002):: start:0x1411880+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1411880 ps:20
+malloc(1002)::chunk=0x1411894
+malloc(1002):: start:0x14118BC+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x14118BC ps:24
+malloc(1002)::chunk=0x14118D4
+malloc(1002):: start:0x14118FC+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x370 r10: 0xE r8: 0xE
+002)::allocating 20 bytes
+malloc(1002)::p0:0x14118FC ps:32
+malloc(1002)::chunk=0x141191C
+malloc(1002):: start:0x1411944+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1411944 ps:20
+malloc(1002)::chunk=0x1411958
+malloc(1002):: start:0x1411980+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1411980 ps:24
+malloc(1002)::chunk=0x1411998
+malloc(1002):: start:0x14119C0+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x14119C0 ps:32
+malloc(1002)::chunk=0x14119E0
+malloc(1002):: start:0x1411A08+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1411A08 ps:20
+malloc(1002)::chunk=0x1411A1C
+malloc(1002):: start:0x1411A44+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1411A44 ps:24
+malloc(1002)::chunk=0x1411A5C
+malloc(1002):: start:0x1411A84+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1411A84 ps:32
+malloc(1002)::chunk=0x1411AA4
+malloc(1002):: start:0x1411ACC+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1411ACC ps:20
+malloc(1002)::chunk=0x1411AE0
+malloc(1002):: start:0x1411B08+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1411B08 ps:24
+malloc(1002)::chunk=0x1411B20
+malloc(1002):: start:0x1411B48+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1411B48 ps:32
+malloc(1002)::chunk=0x1411B68
+malloc(1002):: start:0x1411B90+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1411B90 ps:20
+malloc(1002)::chunk=0x1411BA4
+malloc(1002):: start:0x1411BCC+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1411BCC ps:24
+malloc(1002)::chunk=0x1411BE4
+malloc(1002):: start:0x1411C0C+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1411C0C ps:32
+malloc(1002)::chunk=0x1411C2C
+malloc(1002):: start:0x1411C54+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1411C54 ps:20
+malloc(1002)::chunk=0x1411C68
+malloc(1002):: start:0x1411C90+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1411C90 ps:24
+malloc(1002)::chunk=0x1411CA8
+malloc(1002):: start:0x1411CD0+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1411CD0 ps:32
+malloc(1002)::chunk=0x1411CF0
+malloc(1002):: start:0x1411D18+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1411D18 ps:20
+malloc(1002)::chunk=0x1411D2C
+malloc(1002):: start:0x1411D54+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1411D54 ps:24
+malloc(1002)::chunk=0x1411D6C
+malloc(1002):: start:0x1411D94+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1411D94 ps:32
+malloc(1002)::chunk=0x1411DB4
+malloc(1002):: start:0x1411DDC+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1411DDC ps:20
+malloc(1002)::chunk=0x1411DF0
+malloc(1002):: start:0x1411E18+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1411E18 ps:24
+malloc(1002)::chunk=0x1411E30
+malloc(1002):: start:0x1411E58+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1411E58 ps:32
+malloc(1002)::chunk=0x1411E78
+malloc(1002):: start:0x1411EA0+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1411EA0 ps:20
+malloc(1002)::chunk=0x1411EB4
+malloc(1002):: start:0x1411EDC+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1411EDC ps:24
+malloc(1002)::chunk=0x1411EF4
+malloc(1002):: start:0x1411F1C+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1411F1C ps:32
+malloc(1002)::chunk=0x1411F3C
+malloc(1002):: start:0x1411F64+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1411F64 ps:20
+malloc(1002)::chunk=0x1411F78
+malloc(1002):: start:0x1411FA0+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1411FA0 ps:24
+malloc(1002)::chunk=0x1411FB8
+malloc(1002):: start:0x1411FE0+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1411FE0 ps:32
+malloc(1002)::chunk=0x1412000
+malloc(1002):: start:0x1412028+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1412028 ps:20
+malloc(1002)::chunk=0x141203C
+malloc(1002):: start:0x1412064+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1412064 ps:24
+malloc(1002)::chunk=0x141207C
+malloc(1002):: start:0x14120A4+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x14120A4 ps:32
+malloc(1002)::chunk=0x14120C4
+malloc(1002):: start:0x14120EC+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x14120EC ps:20
+malloc(1002)::chunk=0x1412100
+malloc(1002):: start:0x1412128+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1412128 ps:24
+malloc(1002)::chunk=0x1412140
+malloc(1002):: start:0x1412168+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x1412168 ps:32
+malloc(1002)::chunk=0x1412188
+malloc(1002):: start:0x14121B0+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x14121B0 ps:20
+malloc(1002)::chunk=0x14121C4
+malloc(1002):: start:0x14121EC+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x14121EC ps:24
+malloc(1002)::chunk=0x1412204
+malloc(1002):: start:0x141222C+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x141222C ps:32
+malloc(1002)::chunk=0x141224C
+malloc(1002):: start:0x1412274+20
+task: gtask: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0x1AC rdx: 0x416 r10: 0xE r8: 0xE
+ame rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1412274 ps:20
+malloc(1002)::chunk=0x1412288
+malloc(1002):: start:0x14122B0+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x14122B0 ps:24
+malloc(1002)::chunk=0x14122C8
+malloc(1002):: start:0x14122F0+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x14122F0 ps:32
+malloc(1002)::chunk=0x1412310
+malloc(1002):: start:0x1412338+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x1412338 ps:20
+malloc(1002)::chunk=0x141234C
+malloc(1002):: start:0x1412374+24
+task: game rsp: 0x140CF10 rbp: 0x140CF38 rdi: MALLOC rsi: 0x20 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 32 bytes
+malloc(1002)::p0:0x1412374 ps:24
+malloc(1002)::chunk=0x141238C
+malloc(1002):: start:0x14123B4+32
+task: game rsp: 0x140CED0 rbp: 0x140CEF8 rdi: MALLOC rsi: 0x14 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 20 bytes
+malloc(1002)::p0:0x14123B4 ps:32
+malloc(1002)::chunk=0x14123D4
+malloc(1002):: start:0x14123FC+20
+task: game rsp: 0x140CEE0 rbp: 0x140CF08 rdi: MALLOC rsi: 0x18 rdx: 0xE r10: 0xE r8: 0xE
+malloc(1002)::allocating 24 bytes
+malloc(1002)::p0:0x14123FC ps:20
+malloc(1002)::chunk=0x1412410
+malloc(1002):: start:0x1412438+24
+task: game rsp: 0x140CF30 rbp: 0x140CF58 rdi: READ rsi: 0x5 rdx: 0x140CFC3 r10: 0x1 r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x574 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x526 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x496 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x4DC r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x526 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x526 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x526 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x416 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x496 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x416 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x526 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x416 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x496 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x370 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0x1AC rdx: 0x416 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x310 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0x1AC rdx: 0x3A4 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0x1AC rdx: 0x370 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0x1AC rdx: 0x416 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x574 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x526 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x496 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x416 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x370 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0x1AC rdx: 0x416 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x574 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x526 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x496 r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x4DC r10: 0xE r8: 0xE
+task: sound rsp: 0x140D4E0 rbp: 0x140D508 rdi: PLAY_SOUND rsi: 0xD6 rdx: 0x526 r10: 0xE r8: 0xE
